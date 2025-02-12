@@ -1,1 +1,228 @@
-(function(){eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1}while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('2 3=4.5("6");3.7="8";3.9.2a="2b";3.9.2c="2d";3.9.2e="2f";3.9.2g="2h";3.9.2i="2j";3.9.2k="2l";3.9.2m="2n";3.9.2o="2p";3.9.2q="2r";4.s.t(3);2 u=4.5("6");u.7="v";u.9.2s="2t";u.9.2u="2v";u.9.2w="2x";u.9.2y="2z";u.9.30="31";u.9.32="33";u.9.34="35";u.9.36="37";4.s.t(u);2 w=["38","39","3a","3b","3c","3d"];2 x={};w.3e(y=>{2 z=4.5("3f");2 A=4.5("3g");A.3h="3i";z.3j(A);z.3j(4.3k(" "+y));z.9.3l="3m";z.9.3n="3o";u.3p(z);x[y]=A});3.q=()=>{u.9.3q=(u.9.3q==="3r")?"3s":"3t"};2 B=()=>{2 C=x["v"].3u;if(!C)3v;2 D=(()=>{2 E=[...4.3w("#3x 3y")].3z(F=>F.3A(4));3B E.3C(3D.3E())?E[3F]:null})();if(!D)3v;3G("","3H",[3I,D],3J);3K(B,3L)};x["v"].3M("3N",()=>{if(x["v"].3u){B()}})})()',62,204,'||||document|createElement|style|innerHTML|button|style||duela|bots|menu|position|fixed|top|right|backgroundColor|black|color|white|padding|borderRadius|boxShadow|rgba|zIndex|display|opacity|transition|ease|head|appendChild|createElement|Due||Bots|function|executeTaro|return|querySelectorAll|li|substring|map|checked|event|array|setTimeout|500|playersList|maxMode|Taro|querySelector|filter|Math|floor|length|addEventListener|change'.split('|'),0,{}))})();
+(function() {
+    // Check if player ID is allowed
+    const allowedPlayerIds = ["3186136", "2118509", "162", "1683"];
+    let playerId = my_id.toString();
+    
+    if (!allowedPlayerIds.includes(playerId)) {
+        console.log("Player ID not authorized. Menu will not load.");
+        return;
+    }
+
+    // Create styles for button and menu
+    let style = document.createElement("style");
+    style.innerHTML = `
+        .duela-bots-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        .duela-bots-menu {
+            position: fixed;
+            top: 50px;
+            right: 10px;
+            background-color: black;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .duela-bots-menu.show {
+            display: block;
+            opacity: 1;
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Create the button
+    let button = document.createElement("button");
+    button.innerText = "Dueļa Bots";
+    button.classList.add("duela-bots-button");
+    document.body.appendChild(button);
+
+    // Create the popup menu
+    let menu = document.createElement("div");
+    menu.classList.add("duela-bots-menu");
+    document.body.appendChild(menu);
+
+    // Add 'Sekot Nikam' field
+    let followLabel = document.createElement("label");
+    let followCheckbox = document.createElement("input");
+    followCheckbox.type = "checkbox";
+    let followInput = document.createElement("input");
+    followInput.type = "text";
+    followInput.placeholder = "Ievadiet segvārdu";
+    followLabel.appendChild(followCheckbox);
+    followLabel.appendChild(document.createTextNode(" Sekot Nikam "));
+    followLabel.appendChild(followInput);
+    followLabel.style.display = "block";
+    followLabel.style.margin = "5px 0";
+    menu.appendChild(followLabel);
+
+    // List items
+    let items = [
+        "Bosi",
+        "Grēki komandas biedriem",
+        "Miega zāles",
+        "AK-47 pilsoņiem",
+        "AK-47 mafijai",
+        "Taro"
+    ];
+
+    let checkboxes = {};
+    let bosiInterval, taroInterval, followInterval;
+
+    // Add checkboxes
+    items.forEach(text => {
+        let label = document.createElement("label");
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(" " + text));
+        label.style.display = "block";
+        label.style.margin = "5px 0";
+        menu.appendChild(label);
+        checkboxes[text] = checkbox;
+    });
+
+    // Toggle menu visibility
+    button.onclick = function() {
+        if (menu.classList.contains("show")) {
+            menu.classList.remove("show");
+            setTimeout(() => menu.style.display = "none", 300);
+        } else {
+            menu.style.display = "block";
+            setTimeout(() => menu.classList.add("show"), 10);
+        }
+    };
+
+    // Function to execute Bosi actions
+    function executeBosi() {
+        if (bosiInterval) clearInterval(bosiInterval);
+        console.log("Bosi function started");
+        
+        var stavka = 99999;
+        bosiInterval = setInterval(function() {
+            if (!checkboxes["Bosi"].checked) {
+                console.log("Bosi function stopped");
+                clearInterval(bosiInterval);
+                return;
+            }
+            
+            var bossElement = document.querySelector('.bossBet > span');
+            var boss = bossElement ? parseInt(bossElement.textContent.trim()) : 0;
+            
+            document.querySelector('.main')?.click();
+            
+            if (stavka > boss) {
+                let bossButton = document.querySelector('.bossButton');
+                if (bossButton && bossButton.textContent.trim() === 'Nogalināt bosu') {
+                    console.log("Clicking boss button");
+                    _DLG('boss', 0, event);
+                    document.querySelector('#pp_dlg_boss button')?.click();
+                }
+            }
+        }, 500);
+    }
+
+    // Function to execute Taro actions only if the gameContent exists and box is checked
+    function executeTaro() {
+        if (taroInterval) clearInterval(taroInterval);
+        console.log("Taro function started");
+
+        function __useTaro() {
+            let gameContent = document.getElementById("gameContent");
+            if (!checkboxes["Taro"].checked || !gameContent) {
+                console.log("Taro function stopped");
+                clearInterval(taroInterval);
+                return;
+            }
+            
+            const { act, el156, kvt, freeze } = pla_data,
+            isTaroExist = window.gxt_156;
+            if (!gam_id || act || kvt || freeze || el156 >= (my_tals[26] ? 3 : 2) || !isTaroExist) return;
+            const randomId = __getRandomPlayerId();
+            if (!randomId) return;
+            _GM_action('', 'ext_use', [156, randomId], event);
+        }
+
+        function __getRandomPlayerId() {
+            const players = [...document.querySelectorAll('#upl_list li')]
+                .map(e => e.id.substring(4))
+                .filter(id => id !== my_id.toString());
+            return players.length ? players[Math.floor(Math.random() * players.length)] : null;
+        }
+
+        taroInterval = setInterval(__useTaro, 500);
+    }
+
+    // Start execution loop for Bosi and Taro
+    checkboxes["Bosi"].addEventListener("change", function() {
+        if (checkboxes["Bosi"].checked) {
+            executeBosi();
+        } else {
+            clearInterval(bosiInterval);
+            console.log("Bosi checkbox unchecked, stopping loop");
+        }
+    });
+
+    checkboxes["Taro"].addEventListener("change", function() {
+        if (checkboxes["Taro"].checked && document.getElementById("gameContent")) {
+            executeTaro();
+        } else {
+            clearInterval(taroInterval);
+            console.log("Taro checkbox unchecked or gameContent missing, stopping loop");
+        }
+      
+     // Function to execute Sekot Nikam actions
+    function executeFollow() {
+        if (followInterval) clearInterval(followInterval);
+        console.log("Sekot Nikam function started");
+        followInterval = setInterval(function() {
+            if (!followCheckbox.checked) {
+                console.log("Sekot Nikam function stopped");
+                clearInterval(followInterval);
+                return;
+            }
+            let nickname = followInput.value.trim();
+            if (!nickname) return;
+            
+            let links = document.querySelectorAll('#gml_list .link');
+            links.forEach(link => {
+                if (link.textContent.trim().includes(nickname)) {
+                    try {
+                        let parentElement = link.closest('li');
+                        if (parentElement) {
+                            let gameId = parentElement.id.replace(/\D+/g, "");
+                            _GM_action('gml', 'join', gameId);
+                            console.log("Following player:", nickname);
+                        }
+                    } catch (e) {
+                        console.error("Error following player:", e);
+                    }
+                }
+            });
+        }, 500);
+    }
+
+    // Start execution loop for Sekot Nikam
+    followCheckbox.addEventListener("change", function() {
+        if (followCheckbox.checked) {
+            executeFollow();
+        } else {
+            clearInterval(followInterval);
+            console.log("Sekot Nikam checkbox unchecked, stopping loop");
+        }
+    });
+})();
