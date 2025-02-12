@@ -167,24 +167,6 @@
         taroInterval = setInterval(__useTaro, 500);
     }
 
-    // Start execution loop for Bosi and Taro
-    checkboxes["Bosi"].addEventListener("change", function() {
-        if (checkboxes["Bosi"].checked) {
-            executeBosi();
-        } else {
-            clearInterval(bosiInterval);
-            console.log("Bosi checkbox unchecked, stopping loop");
-        }
-    });
-
-    checkboxes["Taro"].addEventListener("change", function() {
-        if (checkboxes["Taro"].checked && document.getElementById("gameContent")) {
-            executeTaro();
-        } else {
-            clearInterval(taroInterval);
-            console.log("Taro checkbox unchecked or gameContent missing, stopping loop");
-        }
-      
      // Function to execute Sekot Nikam actions
     function executeFollow() {
         if (followInterval) clearInterval(followInterval);
@@ -215,6 +197,23 @@
             });
         }, 500);
     }
+        // Start execution loop for Bosi and Taro
+    checkboxes["Bosi"].addEventListener("change", function() {
+        if (checkboxes["Bosi"].checked) {
+            executeBosi();
+        } else {
+            clearInterval(bosiInterval);
+            console.log("Bosi checkbox unchecked, stopping loop");
+        }
+    });
+
+    checkboxes["Taro"].addEventListener("change", function() {
+        if (checkboxes["Taro"].checked && document.getElementById("gameContent")) {
+            executeTaro();
+        } else {
+            clearInterval(taroInterval);
+            console.log("Taro checkbox unchecked or gameContent missing, stopping loop");
+        }
 
     // Start execution loop for Sekot Nikam
     followCheckbox.addEventListener("change", function() {
