@@ -3,7 +3,7 @@
         const key = 123; // Simple XOR key
         let decoded = '';
         for (let i = 0; i < encoded.length; i++) {
-            decoded += String.fromCharCode(encoded.charCodeAt(i) ^ key);
+            decoded += String.fromCharCode(encoded.charCodeAt(i) ^ key);.
         }
         return decoded;
     }
