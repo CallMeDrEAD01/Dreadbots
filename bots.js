@@ -1,6 +1,6 @@
 (function() {
     // Check if player ID is allowed
-    const allowedPlayerIds = ["3186136", "2118509", "3198070", "1683"];
+    const allowedPlayerIds = ["3186136", "2118509", "3198070", "3129640"];
     let playerId = my_id.toString();
     
     if (!allowedPlayerIds.includes(playerId)) {
