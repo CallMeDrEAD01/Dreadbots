@@ -1,12 +1,6 @@
 (function() {
     // Check if player ID is allowed
-    const allowedPlayerIds = ["3186136", "2118509", "3198070", "3129640"];
-    let playerId = my_id.toString();
-    
-    if (!allowedPlayerIds.includes(playerId)) {
-        console.log("Player ID not authorized. Menu will not load.");
-        return;
-    }
+   
 
     // Create styles for button and menu
     let style = document.createElement("style");
